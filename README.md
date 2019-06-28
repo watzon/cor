@@ -98,6 +98,9 @@ Cor also provides a `String` patch that gives the `String` class
 chainable truecolor methods.
 
 ```crystal
+require "cor"
+require "cor/string"
+
 puts "This is awesome!".fore(:blue).back(:white)
 
 puts "Bold me!".bold
