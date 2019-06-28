@@ -112,28 +112,28 @@ for the terminal using truecolor.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/colors.cr#L1" target="_blank">
+      <a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/colors.cr#L1" target="_blank">
         cor/colors.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L3" target="_blank">
+      <a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L3" target="_blank">
         cor/cor.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor.cr#L12" target="_blank">
+      <a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor.cr#L12" target="_blank">
         cor.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/version.cr#L1" target="_blank">
+      <a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/version.cr#L1" target="_blank">
         cor/version.cr
       </a>
     
@@ -257,6 +257,13 @@ for the terminal using truecolor.</p>
       </li>
     
       <li class="entry-summary">
+        <a href="#brightness-instance-method" class="signature"><strong>#brightness</strong></a>
+        
+          <div class="summary"><p>The brigthess/lightness value of the color.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#green%3AInt32-instance-method" class="signature"><strong>#green</strong> : Int32</a>
         
           <div class="summary"><p>green value for this color</p></div>
@@ -274,6 +281,27 @@ for the terminal using truecolor.</p>
         <a href="#hex_string%28prefix%3Dfalse%2Calpha%3Dfalse%2Cupcase%3Dfalse%29-instance-method" class="signature"><strong>#hex_string</strong>(prefix = <span class="n">false</span>, alpha = <span class="n">false</span>, upcase = <span class="n">false</span>)</a>
         
           <div class="summary"><p>Outputs this <code><a href="Cor.html">Cor</a></code> instance as a <code>hex</code> string.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hue-instance-method" class="signature"><strong>#hue</strong></a>
+        
+          <div class="summary"><p>The hue of the color.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inverse-instance-method" class="signature"><strong>#inverse</strong></a>
+        
+          <div class="summary"><p>Returns a new <code><a href="Cor.html">Cor</a></code> that's the inverse of self.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pretty_print%28pp%29-instance-method" class="signature"><strong>#pretty_print</strong>(pp)</a>
+        
+          <div class="summary"><p>Pretty print (it's a rainbow!)</p></div>
         
       </li>
     
@@ -299,6 +327,13 @@ for the terminal using truecolor.</p>
       </li>
     
       <li class="entry-summary">
+        <a href="#saturation-instance-method" class="signature"><strong>#saturation</strong></a>
+        
+          <div class="summary"><p>The saturation of the color.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#to_a-instance-method" class="signature"><strong>#to_a</strong></a>
         
           <div class="summary"><p>Convert the <code><a href="Cor.html">Cor</a></code> to an array.</p></div>
@@ -309,6 +344,13 @@ for the terminal using truecolor.</p>
         <a href="#to_h-instance-method" class="signature"><strong>#to_h</strong></a>
         
           <div class="summary"><p>Convert the <code><a href="Cor.html">Cor</a></code> to a hash.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s-instance-method" class="signature"><strong>#to_s</strong></a>
+        
+          <div class="summary"><p>Convert to a string</p></div>
         
       </li>
     
@@ -386,7 +428,7 @@ and <code><a href="Cor.html#alpha%3AInt32-instance-method">#alpha</a></code> val
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -404,7 +446,7 @@ and <code><a href="Cor.html#alpha%3AInt32-instance-method">#alpha</a></code> val
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -428,7 +470,7 @@ as a <code><a href="Cor.html">Cor</a></code> instance.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -449,7 +491,7 @@ a symbol representing a <code><a href="Cor/Colors.html#COLORS">COLORS</a></code>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L117" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L117" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -470,7 +512,7 @@ a symbol representing a <code><a href="Cor/Colors.html#COLORS">COLORS</a></code>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -486,7 +528,7 @@ a symbol representing a <code><a href="Cor/Colors.html#COLORS">COLORS</a></code>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -502,7 +544,7 @@ a symbol representing a <code><a href="Cor/Colors.html#COLORS">COLORS</a></code>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -518,7 +560,7 @@ a symbol representing a <code><a href="Cor/Colors.html#COLORS">COLORS</a></code>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -536,7 +578,7 @@ a symbol representing a <code><a href="Cor/Colors.html#COLORS">COLORS</a></code>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -554,7 +596,7 @@ a symbol representing a <code><a href="Cor/Colors.html#COLORS">COLORS</a></code>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -574,7 +616,7 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L179" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L179" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -592,7 +634,7 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -610,7 +652,27 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L171" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L171" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="brightness-instance-method">
+      <div class="signature">
+        
+        def <strong>brightness</strong>
+
+        <a class="method-permalink" href="#brightness-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The brigthess/lightness value of the color.</p>
+
+<p>Algoritm adapted from <a href="http://alienryderflex.com/hsp.html" target="_blank">http://alienryderflex.com/hsp.html</a></p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L203" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -628,7 +690,7 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -646,7 +708,7 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L165" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L165" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -664,7 +726,63 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L87" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hue-instance-method">
+      <div class="signature">
+        
+        def <strong>hue</strong>
+
+        <a class="method-permalink" href="#hue-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The hue of the color.</p>
+
+<p>Algoritm adapted from <a href="http://alienryderflex.com/hsp.html" target="_blank">http://alienryderflex.com/hsp.html</a></p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L211" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inverse-instance-method">
+      <div class="signature">
+        
+        def <strong>inverse</strong>
+
+        <a class="method-permalink" href="#inverse-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns a new <code><a href="Cor.html">Cor</a></code> that's the inverse of self.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L194" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pretty_print(pp)-instance-method">
+      <div class="signature">
+        
+        def <strong>pretty_print</strong>(pp)
+
+        <a class="method-permalink" href="#pretty_print%28pp%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Pretty print (it's a rainbow!)</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L288" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -682,7 +800,7 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -700,7 +818,7 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L159" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L159" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -718,7 +836,27 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L97" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="saturation-instance-method">
+      <div class="signature">
+        
+        def <strong>saturation</strong>
+
+        <a class="method-permalink" href="#saturation-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The saturation of the color.</p>
+
+<p>Algoritm adapted from <a href="http://alienryderflex.com/hsp.html" target="_blank">http://alienryderflex.com/hsp.html</a></p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L238" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -736,7 +874,7 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L194" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L263" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -754,7 +892,25 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L204" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L273" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>
+
+        <a class="method-permalink" href="#to_s-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Convert to a string</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L283" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -772,7 +928,7 @@ between 0 and 255.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/watzon/cor/blob/a592b748e0ed2cdc93f22f8d8c4763162055277b/src/cor/cor.cr#L199" target="_blank">View source</a>]
+          [<a href="https://github.com/watzon/cor/blob/8c122e9e263d43b1ef871002746448869cf35428/src/cor/cor.cr#L268" target="_blank">View source</a>]
         
       </div>
     </div>

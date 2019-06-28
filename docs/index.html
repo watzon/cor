@@ -152,7 +152,10 @@ overline, blink, etc.</p>
 <p>Cor also provides a <code><a href="String.html">String</a></code> patch that gives the <code><a href="String.html">String</a></code> class
 chainable truecolor methods.</p>
 
-<pre><code class="language-crystal">puts <span class="s">&quot;This is awesome!&quot;</span>.fore(<span class="n">:blue</span>).back(<span class="n">:white</span>)
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;cor&quot;</span>
+<span class="k">require</span> <span class="s">&quot;cor/string&quot;</span>
+
+puts <span class="s">&quot;This is awesome!&quot;</span>.fore(<span class="n">:blue</span>).back(<span class="n">:white</span>)
 
 puts <span class="s">&quot;Bold me!&quot;</span>.bold
 puts <span class="s">&quot;Italic me!&quot;</span>.italic

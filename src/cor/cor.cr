@@ -44,11 +44,11 @@ class Cor
     # Make the hex string the correct length
     if [3, 4].includes?(hex.size)
       hex = hex.split("").map(&.* 2).join
+    end
 
-      # Add alpha on there if it doesn't exist
-      if hex.size == 6
-        hex += "ff"
-      end
+    # Add alpha on there if it doesn't exist
+    if hex.size == 6
+      hex += "ff"
     end
 
     # Subdivide it up into rgb values
@@ -190,6 +190,75 @@ class Cor
     end
   end
 
+  # Returns a new `Cor` that's the inverse of self.
+  def inverse
+    inverted = hex_string(alpha: true).to_i(16) ^ 0x00ffffff
+    inverted = sprintf("%08x", inverted)
+    Cor.new(inverted)
+  end
+
+  # The brigthess/lightness value of the color.
+  #
+  # Algoritm adapted from [http://alienryderflex.com/hsp.html](http://alienryderflex.com/hsp.html)
+  def brightness
+    pr, pg, pb = 0.299, 0.587, 0.114
+    Math.sqrt(@red * @red * pr + @green * @green * pg + @blue * @blue + pb)
+  end
+
+  # The hue of the color.
+  #
+  # Algoritm adapted from [http://alienryderflex.com/hsp.html](http://alienryderflex.com/hsp.html)
+  def hue
+    r, g, b = @red, @green, @blue
+    return 0.0 if r == g == b
+    if r > g && r > b
+      if b > g
+        6.0 / 6.0 - 1.0 / 6.0 * (b - g) / (r - g)
+      else
+        0.0 / 6.0 + 1.0 / 6.0 * (g - b) / (r - b)
+      end
+    elsif g >= r && g >= b
+      if r >= b
+        2.0 / 6.0 - 1.0 / 6.0 * (r - b) / (g - b)
+      else
+        2.0 / 6.0 + 1.0 / 6.0 * (b - r) / (g - r)
+      end
+    else
+      if g >= r
+        4.0 / 6.0 - 1.0 / 6.0 * (g - r) / (b - r)
+      else
+        4.0 / 6.0 + 1.0 / 6.0 * (r - g) / (b - g)
+      end
+    end
+  end
+
+  # The saturation of the color.
+  #
+  # Algoritm adapted from [http://alienryderflex.com/hsp.html](http://alienryderflex.com/hsp.html)
+  def saturation
+    r, g, b = @red, @green, @blue
+    return 0.0 if r == g == b
+    if r > g && r > b
+      if b > g
+        1 - g / r
+      else
+        1 - b / r
+      end
+    elsif g >= r && g >= b
+      if r >= b
+        1 - b / g
+      else
+        1 - r / g
+      end
+    else
+      if g >= r
+        1 - r / b
+      else
+        1 - g / b
+      end
+    end
+  end
+
   # Convert the `Cor` to an array.
   def to_a
     [@red, @green, @blue, @alpha]
@@ -208,6 +277,24 @@ class Cor
       "blue" => @blue,
       "alpha" => @alpha
     }
+  end
+
+  # Convert to a string
+  def to_s
+    "Cor{#{@red}, #{@green}, #{blue}, #{@alpha}}"
+  end
+
+  # Pretty print (it's a rainbow!)
+  def pretty_print(pp)
+    rainbow = ->(string : String) {
+      color_hash = Colors::COLORS.to_a
+      colors = 0.upto(string.size - 1).to_a.map { |i| color_hash[i][0] }
+      string.split("").map_with_index do |c, i|
+        Cor.truecolor_string(c.to_s, colors[i])
+      end.join
+    }
+
+    pp.text(rainbow.call("#<Cor: @red: #{@red}, @green: #{green}, @blue: #{blue}, @alpha: #{@alpha}>"))
   end
 
   private def validate_color(color)
