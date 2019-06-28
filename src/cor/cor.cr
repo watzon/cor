@@ -349,13 +349,13 @@ class Cor
 
   # Pretty print (it's a rainbow!)
   def pretty_print(pp)
-    rainbow = ->(string : String) {
+    rainbow = ->(string : String) do
       color_hash = Colors::COLORS.to_a
-      colors = 0.upto(string.size - 1).to_a.map { |i| color_hash[i][0] }
+      colors = 0.upto(string.size - 1).to_a.map { |i| color_hash[i + rand(0..20)][0] }
       string.split("").map_with_index do |c, i|
         Cor.truecolor_string(c.to_s, colors[i])
       end.join
-    }
+    end
 
     pp.text(rainbow.call("#<Cor: @red: #{@red}, @green: #{green}, @blue: #{blue}, @alpha: #{@alpha}>"))
   end
