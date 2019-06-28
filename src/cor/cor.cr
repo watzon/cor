@@ -65,6 +65,51 @@ class Cor
     new(*COLORS[color])
   end
 
+  # Create a new `Cor` instance from hue, saturation, and value.
+  def self.from_hsv(h, s, v)
+    h, s, v = h.to_f/360, s.to_f/100, v.to_f/100
+    h_i = (h*6).to_i
+    f = h*6 - h_i
+    p = v * (1 - s)
+    q = v * (1 - f*s)
+    t = v * (1 - (1 - f) * s)
+    r, g, b = v, t, p if h_i==0
+    r, g, b = q, v, p if h_i==1
+    r, g, b = p, v, t if h_i==2
+    r, g, b = p, q, v if h_i==3
+    r, g, b = t, p, v if h_i==4
+    r, g, b = v, p, q if h_i==5
+    new(
+      (r.not_nil! * 255).to_i,
+      (g.not_nil! * 255).to_i,
+      (b.not_nil! * 255).to_i
+    )
+  end
+
+  # Create a new `Cor` instance from hue, saturation, and lightness.
+  def self.from_hsl(h, s, l)
+    m2 = if l <= 0.5
+      l * (s + 1)
+    else
+      l + s - l * s
+    end
+
+    m1 = l * 2 - m2
+
+    rgb = [
+      hue_to_rgb(m1, m2, h + 1.0 / 3),
+      hue_to_rgb(m1, m2, h),
+      hue_to_rgb(m1, m2, h - 1.0 / 3)
+    ].map { |c| (c * 0xff).round }
+
+    new(rgb[0], rgb[1], rgb[2])
+  end
+
+  # Create a new `Cor` instance from hue, saturation, and brightness.
+  def self.from_hsb(h, s, b)
+    Cor.from_hsl(h, s, b)
+  end
+
   # Implements the comparison operator for `Cor`.
   def <=>(other)
     self.to_a <=> other.to_a
@@ -79,7 +124,7 @@ class Cor
       num
     end
 
-    Cor.new(arr[0], arr[1], arr[2], arr[3])
+    new(arr[0], arr[1], arr[2], arr[3])
   end
   {% end %}
 
@@ -197,66 +242,84 @@ class Cor
     Cor.new(inverted)
   end
 
-  # The brigthess/lightness value of the color.
-  #
-  # Algoritm adapted from [http://alienryderflex.com/hsp.html](http://alienryderflex.com/hsp.html)
-  def brightness
-    pr, pg, pb = 0.299, 0.587, 0.114
-    Math.sqrt(@red * @red * pr + @green * @green * pg + @blue * @blue + pb)
-  end
+  # The HSV (hue / saturation / value) of the color
+  def to_hsv
+    r, g, b = @red.to_f / 255.0, @green.to_f / 255.0, @blue.to_f / 255.0
 
-  # The hue of the color.
-  #
-  # Algoritm adapted from [http://alienryderflex.com/hsp.html](http://alienryderflex.com/hsp.html)
-  def hue
-    r, g, b = @red, @green, @blue
-    return 0.0 if r == g == b
-    if r > g && r > b
-      if b > g
-        6.0 / 6.0 - 1.0 / 6.0 * (b - g) / (r - g)
-      else
-        0.0 / 6.0 + 1.0 / 6.0 * (g - b) / (r - b)
-      end
-    elsif g >= r && g >= b
-      if r >= b
-        2.0 / 6.0 - 1.0 / 6.0 * (r - b) / (g - b)
-      else
-        2.0 / 6.0 + 1.0 / 6.0 * (b - r) / (g - r)
-      end
+    max = [r, g, b].max
+    min = [r, g, b].min
+    delta = max - min
+    v = max * 100.0
+
+    if (max != 0.0)
+      s = delta / max * 100.0
     else
-      if g >= r
-        4.0 / 6.0 - 1.0 / 6.0 * (g - r) / (b - r)
-      else
-        4.0 / 6.0 + 1.0 / 6.0 * (r - g) / (b - g)
+      s = 0.0
+    end
+
+    if (s == 0.0)
+      h = 0.0
+    else
+      if (r == max)
+        h = (g - b) / delta
+      elsif (g == max)
+        h = 2.0 + (b - r) / delta
+      else # (b == max)
+        h = 4.0 + (r - g) / delta
+      end
+
+      h *= 60.0
+
+      if (h < 0)
+        h += 360.0
       end
     end
+
+    {h: h, s: s, v: v}
   end
 
-  # The saturation of the color.
-  #
-  # Algoritm adapted from [http://alienryderflex.com/hsp.html](http://alienryderflex.com/hsp.html)
-  def saturation
-    r, g, b = @red, @green, @blue
-    return 0.0 if r == g == b
-    if r > g && r > b
-      if b > g
-        1 - g / r
-      else
-        1 - b / r
-      end
-    elsif g >= r && g >= b
-      if r >= b
-        1 - b / g
-      else
-        1 - r / g
-      end
+  # The HSV (hue / saturation / lightness) of the color
+  def to_hsl
+
+
+    rgb = [@red / 255.0, @green / 255.0, @blue / 255.0]
+
+    min_rgb, max_rgb = rgb.min, rgb.max
+    delta = max_rgb - min_rgb
+
+    l = (max_rgb + min_rgb) / 2.0
+
+    if delta < 1e-5
+      h = s = 0
     else
-      if g >= r
-        1 - r / b
+      # Calculate the saturation
+      if l < 0.5
+        s = delta / (max_rgb + min_rgb)
       else
-        1 - g / b
+        s = delta / (2 - max_rgb - min_rgb)
       end
+
+      deltas = rgb.map{ |c| (((max_rgb - c) / 6.0) + (delta / 2.0)) / delta }
+
+      h = if (rgb[0] - max_rgb).abs < 1e-5
+        deltas[2] - deltas[1]
+      elsif (rgb[1] - max_rgb).abs < 1e-5
+        (1.0 / 3.0) + deltas[0] - deltas[2]
+      else
+        (2.0 / 3.0) + deltas[1] - deltas[0]
+      end
+
+      h += 1 if h < 0
+      h -= 1 if h > 1
     end
+
+    {h: h, s: s, l: l}
+  end
+
+  # The HSb (hue / saturation / brightness) of the color
+  def to_hsb
+    hsl = to_hsl
+    {h: hsl[:h], s: hsl[:s], b: hsl[:l]}
   end
 
   # Convert the `Cor` to an array.
@@ -295,6 +358,20 @@ class Cor
     }
 
     pp.text(rainbow.call("#<Cor: @red: #{@red}, @green: #{green}, @blue: #{blue}, @alpha: #{@alpha}>"))
+  end
+
+  private def hue_percentage(hue)
+    hue / 360.0
+  end
+
+  # helper for making rgb
+  private def self.hue_to_rgb(m1, m2, h)
+    h += 1 if h < 0
+    h -= 1 if h > 1
+    return m1 + (m2 - m1) * h * 6 if h * 6 < 1
+    return m2 if h * 2 < 1
+    return m1 + (m2 - m1) * (2.0/3 - h) * 6 if h * 3 < 2
+    return m1
   end
 
   private def validate_color(color)
