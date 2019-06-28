@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.29.0">
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "";
+</script>
+
+  <meta id="repository-name" content="github.com/watzon/cor">
+  <title>README - github.com/watzon/cor</title>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="repository-links">
+      <a href="index.html">README</a>
+    </div>
+  </div>
+
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent " data-id="github.com/watzon/cor/Cor" data-name="cor">
+      <a href="Cor.html">Cor</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/watzon/cor/Cor/Colors" data-name="cor::colors">
+      <a href="Cor/Colors.html">Colors</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/watzon/cor/String" data-name="string">
+      <a href="String.html">String</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1>Cor</h1>
+
+<p>Cor (which means color in Portuguese) is a library for more easily
+working with colors in Crystal. You can think of it as a more
+powerful version of <code>Colorize</code>. Cor allows you to very
+easily convert RGB(A) values to hex and back again for
+use in CSS and HTML. It also provides a set of
+chainable methods for creting colorful strings
+for the terminal using truecolor.</p>
+
+<h2>Installation</h2>
+
+<ol><li>Add the dependency to your <code>shard.yml</code>:</li></ol>
+
+<p><code></code>`yaml
+   dependencies:</p>
+
+<pre><code> cor:
+   github: watzon<span class="s">/cor</code></pre>
+
+<p><code></code>`</p>
+
+<ol><li>Run <code>shards install</code></li></ol>
+
+<h2>Usage</h2>
+
+<h3>Creating a color</h3>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;cor&quot;</span>
+
+red <span class="o">=</span> <span class="t">Cor</span>.<span class="k">new</span>(<span class="n">255</span>, <span class="n">0</span>, <span class="n">0</span>)
+<span class="c"># or you can do</span>
+red <span class="o">=</span> <span class="t">Cor</span>.<span class="k">new</span>(<span class="s">&quot;FF0000&quot;</span>)
+<span class="c"># or you can also do</span>
+red <span class="o">=</span> <span class="t">Cor</span>.color(<span class="n">:red</span>)</code></pre>
+
+<p>You can also include an alpha value</p>
+
+<pre><code class="language-crystal">mid_red <span class="o">=</span> <span class="t">Cor</span>.<span class="k">new</span>(<span class="n">255</span>, <span class="n">0</span>, <span class="n">0</span>, <span class="n">0.5</span>)</code></pre>
+
+<h3>Getting a hex string</h3>
+
+<pre><code class="language-crystal">blue <span class="o">=</span> <span class="t">Cor</span>.color(<span class="n">:blue</span>)
+puts blue.hex_string
+<span class="c"># =&gt; 0000ff</span></code></pre>
+
+<p><code>#hex_string</code> also provides a couple of formatting options</p>
+
+<pre><code class="language-crystal">puts blue.hex_string(prefix: <span class="n">true</span>)
+<span class="c"># =&gt; #0000ff</span>
+
+puts blue.hex_string(alpha: <span class="n">true</span>)
+<span class="c"># =&gt; 0000ffff</span>
+
+puts blue.hex_string(upcase: <span class="n">true</span>)
+<span class="c"># =&gt; 0000FF</span></code></pre>
+
+<h3>Retting a RGB string</h3>
+
+<pre><code class="language-crystal">magenta <span class="o">=</span> <span class="t">Cor</span>.color(<span class="n">:magenta</span>)
+
+puts magenta.rgb_string
+<span class="c"># =&gt; rgb(255, 0, 255)</span>
+
+puts magenta.rgb_string(alpha: <span class="n">true</span>)
+<span class="c"># =&gt; rgb(255, 0, 255, 1)</span></code></pre>
+
+<h3>Math with colors</h3>
+
+<p>The <code><a href="Cor.html">Cor</a></code> class includes the basic math methods as well
+which means if, for whatever reason, you want to add,
+subtract, multiply, or divide colors, you can.</p>
+
+<pre><code class="language-crystal">puts <span class="t">Cor</span>.color(<span class="n">:magenta</span>) <span class="o">-</span> <span class="t">Cor</span>.color(<span class="n">:blue</span>)
+<span class="c"># =&gt; #&lt;Cor:0x7f5892e2df60 @alpha=255, @blue=255, @green=0, @red=0&gt;</span></code></pre>
+
+<h3>24 bit truecolor strings</h3>
+
+<p>Most modern terminals have support for <a href="https://www.wikiwand.com/en/Color_depth" target="_blank">True color</a>
+which allows you to add color to your terminal output. Crystal
+already has support for color output via the <code>Colorize</code>
+module in the standard library, but Cor takes things
+a step further by allowing you to not only colorize
+your output, but also bold, italicize, underline,
+overline, blink, etc.</p>
+
+<p>Cor also provides a <code><a href="String.html">String</a></code> patch that gives the <code><a href="String.html">String</a></code> class
+chainable truecolor methods.</p>
+
+<pre><code class="language-crystal">puts <span class="s">&quot;This is awesome!&quot;</span>.fore(<span class="n">:blue</span>).back(<span class="n">:white</span>)
+
+puts <span class="s">&quot;Bold me!&quot;</span>.bold
+puts <span class="s">&quot;Italic me!&quot;</span>.italic
+puts <span class="s">&quot;Strike me!&quot;</span>.strike
+puts <span class="s">&quot;Blink me like it&#39;s 1999!&quot;</span>.blink
+puts <span class="s">&quot;Faint me!&quot;</span>.faint
+puts <span class="s">&quot;Underline me!&quot;</span>.underline
+puts <span class="s">&quot;Overline me!&quot;</span>.overline</code></pre>
+
+<h2>Development</h2>
+
+<p><span class="flag orange">TODO</span>  Write development instructions here</p>
+
+<h2>Contributing</h2>
+
+<ol><li>Fork it (&lt;https://github.com/watzon/cor/fork>)</li><li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li><li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li><li>Push to the branch (<code>git push origin my-new-feature</code>)</li><li>Create a new Pull Request</li></ol>
+
+<h2>Contributors</h2>
+
+<ul><li><a href="https://github.com/watzon" target="_blank">Chris Watson</a> - creator and maintainer</li></ul>
+</div>
+</body>
+</html>
