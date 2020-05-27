@@ -4,6 +4,8 @@ class Cor
   include Comparable(Cor)
   include Cor::Colors
 
+  ANSI_COLOR_REGEXP = /\x1b+(\[|\[\[)[0-9;:?]+m/m
+
   # red value for this color
   getter red : Int32
 
@@ -358,6 +360,14 @@ class Cor
     end
 
     pp.text(rainbow.call("#<Cor: @red: #{@red}, @green: #{green}, @blue: #{blue}, @alpha: #{@alpha}>"))
+  end
+
+  # Strip ANSI color codes from a string.
+  #
+  # Only ANSI color codes are removed, not movement codes or
+  # other escapes sequences are stripped.
+  def self.strip(string)
+    string.gsub(ANSI_COLOR_REGEXP, "")
   end
 
   private def hue_percentage(hue)
